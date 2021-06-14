@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -50,6 +51,7 @@ const schema = yup.object().shape({
 
 const NewPost = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const { data, addPost } = useGlobalContext();
   const {
@@ -63,6 +65,7 @@ const NewPost = () => {
   const onSubmit = (post) => {
     const newItem = { id: data.length + 1, ...post };
     addPost(newItem);
+    history.push('/');
   };
 
   return (
